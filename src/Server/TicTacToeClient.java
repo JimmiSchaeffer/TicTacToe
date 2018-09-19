@@ -212,3 +212,32 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
 
 
 //Her er mit stykke (Jimmi)
+
+public class Cell extends Pane {
+
+    private int row;
+    private int column;
+
+
+    private char token = ' ';
+
+    public Cell(int row, int column){
+        this.row = row;
+        this.column = column;
+        this.setPrefSize(2000, 2000);
+        setStyle("-fx-border-color: black");
+        this.setOnMouseClicked(e -> handleMouseClick());
+    }
+
+
+    public char getToken() {
+        return token;
+    }
+
+
+    public void setToken(char c) {
+        token = c;
+        repaint();
+    }
+
+}

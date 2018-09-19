@@ -274,4 +274,17 @@ public class Cell extends Pane {
         }
     }
 
+
+    private void handleMouseClick() {
+
+        if (token == ' ' && myTurn) {
+            setToken(myToken);
+            myTurn = false;
+            rowSelected = row;
+            columnSelected = column;
+            lblStatus.setText("Waiting for the other player to move");
+            waiting = false;
+            }
+        }
+    }
 }

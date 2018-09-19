@@ -240,4 +240,38 @@ public class Cell extends Pane {
         repaint();
     }
 
+    protected void repaint() {
+        if (token == 'X') {
+            Line line1 = new Line(10, 10,
+                    this.getWidth() - 10, this.getHeight() - 10);
+            line1.endXProberty().bind(this.widthProberty().subtract(10));
+            line1.endYProberty().bind(this.heightProberty().subtract(10));
+            Line line2 = new Line(10, this.getHeight() - 10,
+                    this.getWidth() - 10, 10);
+            line2.startYProberty().bind(
+               this.heightProberty().subtract(10));
+            line2.endXProberty().bind(this.widthProberty().subtract(10));
+
+
+            this.getChildren().addAll(line1, line2);
+        }
+        else if (token == 'O') {
+            Ellipse ellipse = new Ellipse(this.getWidth() / 2,
+                    this.getHeight() / 2, this.getWidth() / 2 - 10,
+                    this.getHeight() / 2 - 10);
+            ellipse.centerXProberty().bind(
+                    this.widthProberty().divide(2));
+            ellipse.centerYProberty().bind(
+                    this.heightProberty().divide(2));
+            ellipse.radiusXProberty().bind(
+                    this.widthProberty().divide(2).subtract(10));
+            ellipse.radiusYProberty().bind(
+                    this.heightProberty().divide(2).subtract(10));
+            ellipse.setStroke(Color.BLACK);
+            ellipse.setFill(Color.WHITE);
+
+            getChildren().add(ellipse);
+        }
+    }
+
 }

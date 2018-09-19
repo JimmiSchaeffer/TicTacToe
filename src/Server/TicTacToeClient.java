@@ -212,29 +212,29 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
 
 
 //Her er mit stykke (Jimmi)
-
+// An inner class for a cell
 public class Cell extends Pane {
-
+    // Indicate the row and column of this cell in the board
     private int row;
     private int column;
 
-
+    // Token used for this cell
     private char token = ' ';
 
     public Cell(int row, int column){
         this.row = row;
         this.column = column;
-        this.setPrefSize(2000, 2000);
-        setStyle("-fx-border-color: black");
+        this.setPrefSize(2000, 2000); // What happens without this?
+        setStyle("-fx-border-color: black"); // Set cell's border
         this.setOnMouseClicked(e -> handleMouseClick());
     }
 
-
+    /** Return token */
     public char getToken() {
         return token;
     }
 
-
+    /** Set a new token */
     public void setToken(char c) {
         token = c;
         repaint();
@@ -252,7 +252,7 @@ public class Cell extends Pane {
                this.heightProberty().subtract(10));
             line2.endXProberty().bind(this.widthProberty().subtract(10));
 
-
+            // Add the lines to the pane
             this.getChildren().addAll(line1, line2);
         }
         else if (token == 'O') {
@@ -270,20 +270,20 @@ public class Cell extends Pane {
             ellipse.setStroke(Color.BLACK);
             ellipse.setFill(Color.WHITE);
 
-            getChildren().add(ellipse);
+            getChildren().add(ellipse); //Add the ellipse to the pane
         }
     }
 
-
+    /* Handle a mouse click event */
     private void handleMouseClick() {
-
+        // If cell is not occupied and the player has the turn
         if (token == ' ' && myTurn) {
-            setToken(myToken);
+            setToken(myToken); // Set the player's token in the cell
             myTurn = false;
             rowSelected = row;
             columnSelected = column;
             lblStatus.setText("Waiting for the other player to move");
-            waiting = false;
+            waiting = false; // Just completed a succesful move
             }
         }
     }
